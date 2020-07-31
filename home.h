@@ -24,6 +24,8 @@ private slots:
 
     void on_other_clicked();
 
+    void on_browse_clicked();
+
 private:
     Ui::home *ui;
 };
