@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QFileSelector>
+#include <QStandardItemModel>
 
 home::home(QWidget *parent)
     : QMainWindow(parent)
@@ -41,7 +42,9 @@ void home::on_izvrsi_clicked()
     QString uneto = ui -> unos -> toPlainText();
 
     if(uneto == "")
-
+    {
+        //
+    }
     // Tabela za prikaz informacija
     ui -> prikaz ->setDisabled(false);
     ui -> prikaz -> setStyleSheet("background-color: #25ad2a; border-style: outset; "
