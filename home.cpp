@@ -52,8 +52,7 @@ void home::on_izvrsi_clicked()
     else {
         // Tabela za prikaz informacija
         ui -> prikaz ->setDisabled(false);
-        ui -> prikaz -> setStyleSheet("background-color: #25ad2a; border-style: outset; "
-                                    "border-width: 2px; border-radius: 10px; border-color: beige; color: #fff;");
+       // ui -> prikaz -> setStyleSheet("border: 1px #000 solid; border-radius: 10px;");
 
         if(ui -> select -> isChecked())
         {
@@ -119,7 +118,7 @@ void home::on_select_clicked()
 {
     // Prvi ček boks
     ui -> unos ->setDisabled(false);
-    ui -> unos -> setStyleSheet("background-color: #124191; border-style: outset; "
+    ui -> unos -> setStyleSheet("background-color: #0088cc; border-style: outset; "
                                 "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
 
     // dugme omogući
@@ -134,7 +133,7 @@ void home::on_other_clicked()
 
     // Drugi ček boks
     ui -> unos ->setDisabled(false);
-    ui -> unos -> setStyleSheet("background-color: #124191; border-style: outset; "
+    ui -> unos -> setStyleSheet("background-color: #0088cc; border-style: outset; "
                                 "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
 
     // dugme omogući

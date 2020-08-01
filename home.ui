@@ -22,7 +22,7 @@
    <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true">background-color: #f9ffff</string>
   </property>
   <widget class="QWidget" name="glavniWidget">
    <widget class="QPushButton" name="close">
@@ -45,7 +45,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color: red;
+    background-color: #a80044;
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
@@ -69,8 +69,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial Black</family>
-      <pointsize>14</pointsize>
+      <family>Calibri</family>
+      <pointsize>18</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -93,7 +93,10 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <family>Calibri</family>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -136,9 +139,9 @@
    <widget class="QTextEdit" name="unos">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>40</x>
       <y>290</y>
-      <width>691</width>
+      <width>711</width>
       <height>51</height>
      </rect>
     </property>
@@ -151,7 +154,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">    background-color: #124191;
+     <string notr="true">    background-color: #0088cc;
     border-style: outset;
     border-width: 2px;
     border-radius: 10px;
@@ -171,8 +174,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
-      <pointsize>12</pointsize>
+      <family>Calibri</family>
+      <pointsize>18</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -201,8 +204,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial Black</family>
-      <pointsize>14</pointsize>
+      <family>Calibri</family>
+      <pointsize>18</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -217,16 +220,16 @@
    <widget class="QRadioButton" name="select">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>50</x>
       <y>220</y>
-      <width>191</width>
+      <width>201</width>
       <height>28</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Arial Black</family>
-      <pointsize>10</pointsize>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -246,8 +249,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial Black</family>
-      <pointsize>10</pointsize>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -266,20 +269,38 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">    background-color: #25ad2a;
-    border-style: outset;
+     <string notr="true">    border-style: outset;
     border-width: 2px;
     border-radius: 10px;
-    border-color: beige;
-    padding: 6px;
-	color: #fff;</string>
+    border-color:  #ff7733;</string>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="showGrid">
+     <bool>false</bool>
+    </property>
+    <property name="gridStyle">
+     <enum>Qt::NoPen</enum>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>false</bool>
+    </property>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>130</y>
+      <y>140</y>
       <width>711</width>
       <height>16</height>
      </rect>
