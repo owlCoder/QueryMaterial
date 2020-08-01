@@ -31,3 +31,15 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc
+
+RC_ICONS = 2254.ico
+
+VERSION = 1.12.65.1
+
+QMAKE_TARGET_COMPANY = GitHub Inc.
+QMAKE_TARGET_PRODUCT = Qt5 GUI App
+QMAKE_TARGET_DESCRIPTION = Jednostavna aplikacija za rad sa lokalnom bazom podataka preko upita.
+QMAKE_TARGET_COPYRIGHT = 2020. Danijel Jovanovic | Podrzi projekte otvorenog koda!

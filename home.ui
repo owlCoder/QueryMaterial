@@ -22,7 +22,7 @@
    <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #f9ffff</string>
+   <string notr="true">background-color: #f9ffff;</string>
   </property>
   <widget class="QWidget" name="glavniWidget">
    <widget class="QPushButton" name="close">
