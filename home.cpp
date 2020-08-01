@@ -36,6 +36,9 @@ home::home(QWidget *parent)
 
     // onemoguci adresu baze QLineEdit
     ui -> adresa -> setDisabled(true);
+
+    // sakri error
+    ui -> error -> hide();
 }
 
 home::~home()
@@ -50,7 +53,7 @@ void home::on_izvrsi_clicked()
 
     if(uneto == "")
     {
-        //
+       ui -> error -> setText("Unesi i ne glumi!");
     }
     // Tabela za prikaz informacija
     ui -> prikaz ->setDisabled(false);
@@ -65,8 +68,6 @@ void home::on_izvrsi_clicked()
         QString adr = ui -> adresa -> text();
         QSqlQuery upit;
 
-        qDebug() << adr;
-
         c.dbOpen(adr);
 
         if(!upit.exec(up))
@@ -79,20 +80,40 @@ void home::on_izvrsi_clicked()
         }
         else
         {
-            ui -> prikaz -> setStyleSheet("background-color: #fff; border-style: outset; "
-                                        "border-width: 2px; border-radius: 10px; border-color: red; padding: 6px; color: red;");
+            ui -> error -> show();
 
-            QSqlQueryModel *modal = new QSqlQueryModel();
-
-            upit.exec("SELECT 'TRAŽENI UPIT NIJE MOGUĆE IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!'");
-
-            modal -> setQuery(upit);
-            ui -> prikaz -> setModel(modal);
+           ui -> error -> setText("\n\nTRAŽENI UPIT NIJE MOGUĆE "
+                                  "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
 
         }
-
         c.dbClose();
     }
+
+        if(ui -> other -> isChecked())
+        {
+            QString up = ui -> unos -> toPlainText();
+            up.replace("\\n", " ");
+
+            Conn c;
+            QString adr = ui -> adresa -> text();
+            QSqlQuery upit;
+
+            c.dbOpen(adr);
+
+            if(upit.exec(up) == true)
+            {
+                QMessageBox::information(this, "Obaveštenje", "Upit je uspešno izvršen!\n\n"
+                                                              "Dev code:" + upit.lastQuery());
+            }
+            else
+            {
+                QMessageBox::critical(this, "Greška!", "TRAŽENI UPIT NIJE MOGUĆE "
+                                                       "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U "
+                                                       "BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
+
+            }
+            c.dbClose();
+        }
 }
 
 void home::on_close_clicked()
