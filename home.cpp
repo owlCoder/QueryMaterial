@@ -16,17 +16,10 @@ home::home(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // status bar
-
     // onemogući unos
     ui -> unos -> setDisabled(true);
     ui -> unos -> setStyleSheet("background-color: #5f7064; border-style: outset; "
                                 "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
-
-    ui -> prikaz -> setDisabled(true);
-    ui -> prikaz -> setStyleSheet("background-color: #5f7064; border-style: outset; "
-                                "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
-
     // onemogući dugme
     ui -> izvrsi -> setDisabled(true);
     ui -> izvrsi -> setStyleSheet("background-color: #5f7064; border-style: outset; "
@@ -60,7 +53,7 @@ void home::on_izvrsi_clicked()
         // Tabela za prikaz informacija
         ui -> prikaz ->setDisabled(false);
         ui -> prikaz -> setStyleSheet("background-color: #25ad2a; border-style: outset; "
-                                    "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
+                                    "border-width: 2px; border-radius: 10px; border-color: beige; color: #fff;");
 
         if(ui -> select -> isChecked())
         {
