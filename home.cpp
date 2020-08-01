@@ -16,6 +16,8 @@ home::home(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // status bar
+
     // onemogući unos
     ui -> unos -> setDisabled(true);
     ui -> unos -> setStyleSheet("background-color: #5f7064; border-style: outset; "
@@ -36,6 +38,8 @@ home::home(QWidget *parent)
 
     // onemoguci adresu baze QLineEdit
     ui -> adresa -> setDisabled(true);
+
+    ui -> statusBar -> showMessage("© 2020. Query Material. Podrži projekte otvorenog koda!");
 }
 
 home::~home()
@@ -70,7 +74,7 @@ void home::on_izvrsi_clicked()
 
             if(!upit.exec(up))
             {
-                window() -> resize(820, 627);
+                window() -> resize(820, 689);
 
                 QSqlQueryModel *modal = new QSqlQueryModel();
                 modal -> setQuery(upit);
