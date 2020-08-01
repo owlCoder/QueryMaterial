@@ -54,7 +54,7 @@ void home::on_izvrsi_clicked()
 
     if(uneto == "")
     {
-       QMessageBox::warning(this, "Upozorenje!", "Polje za upit je prazno!");
+       QMessageBox::warning(this, "Upozorenje!", "<font size=4>Polje za upit je prazno!</font>");
     }
     else {
         // Tabela za prikaz informacija
@@ -72,9 +72,9 @@ void home::on_izvrsi_clicked()
 
             c.dbOpen(adr);
 
-            if(!upit.exec(up))
+            if(upit.exec(up))
             {
-                window() -> resize(820, 689);
+                window() -> resize(820, 586);
 
                 QSqlQueryModel *modal = new QSqlQueryModel();
                 modal -> setQuery(upit);
@@ -82,12 +82,15 @@ void home::on_izvrsi_clicked()
             }
             else
             {
-                //
+                QMessageBox::critical(this, "Greška!", "<font size=4>Traženi upit nije moguće "
+                                                       "izvršiti jer se tražena tabela ne nalazi u "
+                                                       "bazi podataka ili je upit sintaksno pogrešan!</font>");
             }
             c.dbClose();
         }
 
-            if(ui -> other -> isChecked())
+
+          if(ui -> other -> isChecked())
             {
                 QString up = ui -> unos -> toPlainText();
                 Conn c;
@@ -96,20 +99,22 @@ void home::on_izvrsi_clicked()
 
                 c.dbOpen(adr);
 
-                if(upit.exec(up) == true)
+                if(upit.exec(up))
                 {
-                    QMessageBox::information(this, "Obaveštenje", "Upit je uspešno izvršen!\n\n"
-                                                                  "Dev code: " + upit.lastQuery());
+                    QMessageBox::information(this, "Obaveštenje", "<font size=4>Upit je uspešno izvršen!\n\n\n"
+                                                                  "IZVRŠENI UPIT\n\n" + upit.lastQuery() + "</font>");
                 }
                 else
                 {
-                    QMessageBox::critical(this, "Greška!", "TRAŽENI UPIT NIJE MOGUĆE "
-                                                           "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U "
-                                                           "BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
+                    QMessageBox::critical(this, "Greška!", "<font size=4>Traženi upit nije moguće "
+                                                           "izvršiti jer se tražena tabela ne nalazi u "
+                                                           "bazi podataka ili je upit sintaksno pogrešan!</font>");
 
                 }
                 c.dbClose();
             }
+
+          ui -> unos -> clear();
      }
 }
 
@@ -133,6 +138,8 @@ void home::on_select_clicked()
 
 void home::on_other_clicked()
 {
+    window() -> resize(820, 386);
+
     // Drugi ček boks
     ui -> unos ->setDisabled(false);
     ui -> unos -> setStyleSheet("background-color: #124191; border-style: outset; "

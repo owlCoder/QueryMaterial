@@ -7,8 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>820</width>
-    <height>503</height>
+    <height>386</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Query Material</string>
@@ -134,7 +139,7 @@
       <x>60</x>
       <y>290</y>
       <width>691</width>
-      <height>171</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -255,7 +260,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>480</y>
+      <y>360</y>
       <width>691</width>
       <height>181</height>
      </rect>
