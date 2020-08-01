@@ -36,9 +36,6 @@ home::home(QWidget *parent)
 
     // onemoguci adresu baze QLineEdit
     ui -> adresa -> setDisabled(true);
-
-    // sakri error
-    ui -> error -> hide();
 }
 
 home::~home()
@@ -53,46 +50,17 @@ void home::on_izvrsi_clicked()
 
     if(uneto == "")
     {
-       ui -> error -> setText("Unesi i ne glumi!");
+       QMessageBox::warning(this, "Upozorenje!", "Polje za upit je prazno!");
     }
-    // Tabela za prikaz informacija
-    ui -> prikaz ->setDisabled(false);
-    ui -> prikaz -> setStyleSheet("background-color: #25ad2a; border-style: outset; "
-                                "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
+    else {
+        // Tabela za prikaz informacija
+        ui -> prikaz ->setDisabled(false);
+        ui -> prikaz -> setStyleSheet("background-color: #25ad2a; border-style: outset; "
+                                    "border-width: 2px; border-radius: 10px; border-color: beige; padding: 6px; color: #fff;");
 
-    if(ui -> select -> isChecked())
-    {
-        QString up = ui -> unos -> toPlainText();
-
-        Conn c;
-        QString adr = ui -> adresa -> text();
-        QSqlQuery upit;
-
-        c.dbOpen(adr);
-
-        if(!upit.exec(up))
-        {
-            QSqlQueryModel *modal = new QSqlQueryModel();
-            modal -> setQuery(upit);
-            ui -> prikaz -> setModel(modal);
-
-             // qDebug() << upit.lastError();
-        }
-        else
-        {
-            ui -> error -> show();
-
-           ui -> error -> setText("\n\nTRAŽENI UPIT NIJE MOGUĆE "
-                                  "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
-
-        }
-        c.dbClose();
-    }
-
-        if(ui -> other -> isChecked())
+        if(ui -> select -> isChecked())
         {
             QString up = ui -> unos -> toPlainText();
-            up.replace("\\n", " ");
 
             Conn c;
             QString adr = ui -> adresa -> text();
@@ -100,20 +68,45 @@ void home::on_izvrsi_clicked()
 
             c.dbOpen(adr);
 
-            if(upit.exec(up) == true)
+            if(!upit.exec(up))
             {
-                QMessageBox::information(this, "Obaveštenje", "Upit je uspešno izvršen!\n\n"
-                                                              "Dev code:" + upit.lastQuery());
+                window() -> resize(820, 627);
+
+                QSqlQueryModel *modal = new QSqlQueryModel();
+                modal -> setQuery(upit);
+                ui -> prikaz -> setModel(modal);
             }
             else
             {
-                QMessageBox::critical(this, "Greška!", "TRAŽENI UPIT NIJE MOGUĆE "
-                                                       "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U "
-                                                       "BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
-
+                //
             }
             c.dbClose();
         }
+
+            if(ui -> other -> isChecked())
+            {
+                QString up = ui -> unos -> toPlainText();
+                Conn c;
+                QString adr = ui -> adresa -> text();
+                QSqlQuery upit;
+
+                c.dbOpen(adr);
+
+                if(upit.exec(up) == true)
+                {
+                    QMessageBox::information(this, "Obaveštenje", "Upit je uspešno izvršen!\n\n"
+                                                                  "Dev code: " + upit.lastQuery());
+                }
+                else
+                {
+                    QMessageBox::critical(this, "Greška!", "TRAŽENI UPIT NIJE MOGUĆE "
+                                                           "IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U "
+                                                           "BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!");
+
+                }
+                c.dbClose();
+            }
+     }
 }
 
 void home::on_close_clicked()
