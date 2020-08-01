@@ -17,13 +17,9 @@ public:
 
 private slots:
     void on_izvrsi_clicked();
-
     void on_close_clicked();
-
     void on_select_clicked();
-
     void on_other_clicked();
-
     void on_browse_clicked();
 
 private:

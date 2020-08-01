@@ -4,7 +4,11 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QFileSelector>
+#include <QMessageBox>
+#include <QSqlQuery>
 #include <QStandardItemModel>
+
+#include "conn.h"
 
 home::home(QWidget *parent)
     : QMainWindow(parent)
@@ -29,6 +33,9 @@ home::home(QWidget *parent)
     // onemogući checkboxeve
     ui -> select -> setDisabled(true);
     ui -> other  -> setDisabled(true);
+
+    // onemoguci adresu baze QLineEdit
+    ui -> adresa -> setDisabled(true);
 }
 
 home::~home()
@@ -52,7 +59,39 @@ void home::on_izvrsi_clicked()
 
     if(ui -> select -> isChecked())
     {
-        return;
+        QString up = ui -> unos -> toPlainText();
+
+        Conn c;
+        QString adr = ui -> adresa -> text();
+        QSqlQuery upit;
+
+        qDebug() << adr;
+
+        c.dbOpen(adr);
+
+        if(!upit.exec(up))
+        {
+            QSqlQueryModel *modal = new QSqlQueryModel();
+            modal -> setQuery(upit);
+            ui -> prikaz -> setModel(modal);
+
+             // qDebug() << upit.lastError();
+        }
+        else
+        {
+            ui -> prikaz -> setStyleSheet("background-color: #fff; border-style: outset; "
+                                        "border-width: 2px; border-radius: 10px; border-color: red; padding: 6px; color: red;");
+
+            QSqlQueryModel *modal = new QSqlQueryModel();
+
+            upit.exec("SELECT 'TRAŽENI UPIT NIJE MOGUĆE IZVRŠITI JER SE TRAŽENA TABELA NE NALAZI U BAZI PODATAKA ILI JE UPIT SINTAKSNO POGREŠAN!'");
+
+            modal -> setQuery(upit);
+            ui -> prikaz -> setModel(modal);
+
+        }
+
+        c.dbClose();
     }
 }
 
@@ -96,7 +135,7 @@ void home::on_browse_clicked()
     if( putanja != "" )
     {
     ui -> adresa -> setText(putanja);
-    ui -> adresa -> setDisabled(true);
+    //ui -> adresa -> setDisabled(true);
 
     // omogući checkboxeve
     ui -> select -> setDisabled(false);
