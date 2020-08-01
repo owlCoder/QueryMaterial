@@ -253,7 +253,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Drugi upiti</string>
+     <string>Drugi upit</string>
     </property>
    </widget>
    <widget class="QTableView" name="prikaz">

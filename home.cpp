@@ -94,8 +94,8 @@ void home::on_izvrsi_clicked()
 
                 if(upit.exec(up))
                 {
-                    QMessageBox::information(this, "Obaveštenje", "<font size=4>Upit je uspešno izvršen!\n\n\n"
-                                                                  "IZVRŠENI UPIT\n\n" + upit.lastQuery() + "</font>");
+                    QMessageBox::information(this, "Obaveštenje", "<font size=4>Upit je uspešno izvršen!"
+                                                                  "\n\n\nIZVRŠENI UPIT\n\n" + upit.lastQuery() + "</font>");
                 }
                 else
                 {
